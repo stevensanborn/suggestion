@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import dj_database_url
 
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'signup',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +80,7 @@ DATABASES = {
   #{'default': dj_database_url.config(default='postgres://stevensanborn:yeahdickey@localhost:5432/suggestion')}
 }
 
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config(default='postgresql://stevensanborn:yeahdickey@localhost:5432/suggestion')
 
 
 # Internationalization
@@ -101,4 +104,17 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# TEMPLATES
+
+TEMPLATE_DIRS = (os.path.join(PROJECT_PATH,"static","templates"))
+
+if DEBUG:
+    MEDIA_URL = '/media/'
+    STATIC_ROOT=(os.path.join(PROJECT_PATH,"static","static-only"))
+    MEDIA_ROOT=(os.path.join(PROJECT_PATH,"static","media"))
+    STATICFILES_DIRS = (
+        (os.path.join(PROJECT_PATH,"static","static")),
+    )
+
 
