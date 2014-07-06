@@ -61,13 +61,24 @@ WSGI_APPLICATION = 'suggestion.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
-  {'default': dj_database_url.config(default='postgres://stevensanborn:yeahdickey@localhost:5432/suggestion')}
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'suggestion',                      
+        'USER': 'stevensanborn',
+        'PASSWORD': 'yeahdickey',
+        'HOST': ''
+    }
+  #{'default': dj_database_url.config(default='postgres://stevensanborn:yeahdickey@localhost:5432/suggestion')}
 }
+
+DATABASES['default'] =  dj_database_url.config()
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
