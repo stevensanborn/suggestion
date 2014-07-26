@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<h1>Create New Suggestion Box</h1>
+<form role="form " class="form-horizontal" method="POST">
+ 
+ {% csrf_token %}
+
+<div class="form-group "> 
+	
+	<div class="error">
+		{{ form.non_field_errors }}
+	</div>
+
+		<div class="col-sm-7">
+			<label for="inputTitle">Suggestion Box Title</label>
+			<input type="text" class="form-control input-med" id="inputTitle" name="title" value="{{ form.title.value |default_if_none:""}}" size="50"  placeholder="Title"/>
+		</div>
+
+	<div  class="error">
+		{{ form.title.errors }}
+	</div>
+
+</div>
+<div class="form-group">
+	
+	<div class="col-sm-7">
+			<label for="inputTitle">Suggestion Box Subtitle (optional) </label>
+			<input type="text" class="form-control input-med" id="inputTitle" name="description" value="{{ form.title.value|default_if_none:"" }}" size="150"  placeholder="Description"/>
+	</div>
+	<div  class="error">
+		{{ form.description.errors }}
+	</div>
+
+</div>
+<div class="form-group"> 
+	<div class="col-sm-7">
+
+	<label for="inputTitle">Select User Type  </label>
+
+	{% for choice in form.suggestortype.field.choices %}
+
+  	<div class="radio">
+
+  		<label class="control-label" for="choice_{{choice.id}}"  >
+    
+    		<input type="radio" name="{{form.suggestortype.html_name}}" id="choice_{{choice.0}}" value="{{choice.0}}"
+
+		     	 {% ifequal form.suggestortypes.data choice.0 %}
+		        	 checked="checked"
+		      	 {% endifequal %} />
+		      	 
+		  		<span >{{ choice.1  }}</span>
+  		</label>
+
+  	</div>
+
+	{% endfor %}
+	</div>
+	<div  class="error">
+		{{ form.suggestortype.errors }}
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-7">
+	 <input type="submit" value="Submit" class="btn btn-lg btn-primary" />
+	 </div>
+</div>
+
+ </form>
+
+{% endblock %}

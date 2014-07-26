@@ -1,5 +1,117 @@
-.jumbotron{
 
-	background-color: #17D1FF
+.body{
+	color:#231D1F;
+	background-color: #EEEEEE
+}
+.navbar-inverse{
+	background-color:#8C3F86;
+	border-color: clear;
+}
 
+.navbar-inverse .navbar-nav>li>a{
+	color:#EEEEEE;
+57D8C8
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+	color:#57D8C8;
+
+}
+.navbar-inverse .navbar-nav>.active>a{
+	background-color:#45C4B4;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+	color:#EEEEEE;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color:#EEEEEE;
+}
+
+.navbar-brand{
+	font-family: 'Montserrat Alternates', sans-serif;
+	font-weight: 700;
+	font-size: 2em;
+	color:white;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #EEEEEE
+}
+
+
+#home-container{
+
+	text-align: center;
+
+}
+
+#home-container .lead{
+
+	font-size: 30px;
+}
+
+.errorlist{
+
+	color:red;
+	list-style: none;
+	padding: 0 0 0 5px;
+	font-weight: 600;
+
+}
+
+div.error{
+
+	clear: both;
+	padding: 5px 0 0 20px;
+}
+
+.radio .help-block{
+	
+	display: inline;
+
+}
+
+.radio-label{
+	display: inline;
+	font-weight: 700;
+}
+
+.radio{
+	margin-bottom: 10px;
+}
+.right-btn{
+	display: inline-block;
+	margin: 15px 5px 0 0;
+}
+.left-headline{
+	display: inline-block;
+	;
+}
+
+.admin-suggestion{
+	border: 1px solid lightgray;
+	margin: 20px 0 0 0;
+	padding: 20px;
+	border-radius: 4px;
+	background-color: #FAFAFE;
+}
+
+.admin-suggestion-subject{
+	font-weight: 700;
+	color:black;
+	font-size:1.1em;
+}
+.admin-suggestion-time{
+	font-weight: 300;
+	color:#333333;
+}
+
+.admin-suggestion-p{
+	margin-top:5px;
+}
+
+.breadcrumb {
+	background-color: transparent;
+	padding-bottom: 0px;
+	margin-bottom: 0;
 }

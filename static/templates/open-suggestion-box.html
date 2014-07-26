@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+
+
+
+
+<h2  class="left-headline page-header">{{Box.title}}</h2>
+
+<p> {{ Box.description }} </p>
+
+<form class="form-horizontal" method="post" role="form">
+
+	{% csrf_token %}
+	
+	<div class="form-group">
+		<div class="col-sm-7">		
+			<label for="inputSubject">Subject:</label>
+			<input type="text" name="subject" id="inputSubject"  class="form-control" placeholder="Subject" value="{{ form.subject.value |default_if_none:""}}"></input>
+			</div>
+		<div  class="error">
+			{{ form.subject.errors }}
+		</div>
+	</div>
+	
+
+	<div class="form-group">
+		<div class="col-sm-7">		
+			<label for="inputTxt" >Submission:</label> 
+			<textarea type="text" name="txt" id="inputTxt" class="form-control" placeholder="Your submission here" value={{ form.txt.value |default_if_none:""}}></textarea> 
+		</div>
+		<div  class="error">
+			{{ form.txt.errors }}
+		</div>
+	
+	</div>
+	<div class="form-group">	
+		<div class="col-sm-7">				
+			<input type="submit" value="Submit" class="btn btn-lg btn-primary ">
+		</div>
+	</div>
+	
+</form>
+
+
+
+
+{% endblock %}

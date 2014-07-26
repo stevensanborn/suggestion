@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<h2  class="left-headline page-header">Suggestion Boxes</h2>
+<p> Below lists all your suggestion boxes. Click one to view its details</p>
+<a  href="{% url 'user_boxes_create' %}" class="btn btn-primary btn-med pull-right right-btn" role="button">Create New</a>
+
+<table class="table table-striped table-hover">
+<thead>
+	<th></th>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Suggestions</th>
+	<th>Created</th>
+</thead>
+{% for B in Boxes %}
+<tbody>
+<tr>
+	<td><a href="{% url 'user_box' B.id  %}">{{forloop.counter}}</a></td>
+	<td><a href="{% url 'user_box' B.id  %}">{{B.title}}</a></td>
+	<td>{{B.description}}</td>
+	<td >{{B.suggestion__count}}</td>
+	<td>{{B.timestamp|date:"D d M Y"}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}

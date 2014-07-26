@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+  <li><a href="{% url "home" %}">Home</a></li>
+  <li><a href="{% url "account" %}">Account</a></li>
+  <li><a href="{% url "user_boxes" %}">Suggestion Boxes</a></li>
+</ol>
+{% endblock %}
+
+{% block content %} 
+
+ <form>
+ Hi {{ hello }}
+	{% for choice in form.suggestortype.field.choices %}
+  <li>
+    <input type="radio" name="suggestortype" value="{{choice.0}}"
+      {% ifequal form.suggestortype.data choice.0 %}
+         checked="checked"
+      {% endifequal %}/>
+    <label for="">{{choice.1}}</label>
+  </li>
+	{% endfor %}
+
+
+ </form>
+
+{% endblock %}

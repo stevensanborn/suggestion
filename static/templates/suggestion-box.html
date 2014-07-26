@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+
+
+
+
+<h2  class="left-headline page-header">{{Box.title}} </h2>
+<div class="pull-right" >
+
+	<p>Embed this suggestion box into your site:</p>
+
+	<button class="btn btn-lg btn-primary">Preview</button>
+	<button class="btn btn-lg btn-info">Embed Code</button>
+	<button class="btn btn-lg btn-warning">Customize</button>
+</div>
+
+
+<h4>{{ Box.description }}</h4>
+
+<hr>
+<div >
+	<a href="http://{{ request.get_host }}/suggestion/{{ Box.url_hash }}" target="_blank">	http://{{ request.get_host }}/suggestion/{{ Box.url_hash }}</a>
+</div>
+
+
+
+
+
+<hr />
+
+<p> This box has {{ Suggestions.count }} suggestion(s). View below.</p>
+
+
+{% for S in Suggestions %}
+
+<div class="admin-suggestion">
+
+<span class="admin-suggestion-subject">{{ S.subject }}</span> <span class="admin-suggestion-time"> &#187; {{ S.timestamp }}</span>
+
+<p class="admin-suggestion-p">
+	{{ S.txt}}
+</p>
+
+</div>
+
+{% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,69 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+
+        <h1>Register</h1>
+        
+        <form id="user_form" method="post" action="{{ site }}/register/" class="form-horizontal">
+
+           {% csrf_token %}
+
+           <div class="form-group form-group-lg"  >
+                
+                <div class="error">
+                {{ form.non_field_errors }}
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="text" class="form-control input-lg" name="email" value="{% if form.email.value != None %}{{ form.email.value }}{% endif %}" size="50"  placeholder="Email Address"/>
+                </div>
+
+               
+
+              
+              <div  class="error">
+                {{ form.email.errors }}
+              </div>
+            
+           </div>
+  
+          <div class="form-group form-group-lg"  >
+            
+                <div class="col-sm-5">
+                    <input type="text" class="form-control input-lg" name="emailconfirm" value="{% if form.emailconfirm.value != None %}{{ form.emailconfirm.value }}{% endif %}" size="50"  placeholder="Confirm Email Address"/>
+                </div>
+
+
+              <div  class="error">
+                {{ form.emailconfirm.errors }}
+              </div>
+          </div>
+
+            <div class="form-group form-group-lg" >
+
+                <div class="col-sm-5">
+                    <input type="password" name="password"  class="form-control input-lg" value="{% if form.password.value != None %}{{ form.password.value }}{% endif %}" id="password" value="" size="50" placeholder="Password" />
+                </div>
+
+                <div class="error" >
+                    {{ form.password.errors }}
+                </div>
+            </div>
+
+            <div class="form-group form-group-lg" >
+
+                <div class="col-sm-5">
+                    <input type="password" name="passwordconfirm"  class="form-control input-lg" value="{% if form.passwordconfirm.value != None %}{{ form.passwordconfirm.value }}{% endif %}" id="password" value="" size="50" placeholder="Confirm Password" />
+                </div>
+
+                <div class="error" >
+                    {{ form.passwordconfirm.errors }}
+                </div>
+            </div>
+                
+            <input type="submit" value="Register" class="btn btn-lg btn-primary" />
+            
+        </form>
+
+{% endblock %}

@@ -16,6 +16,18 @@ SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+from .email_info import * 
+# EMAIL_USE_TLS=EMAIL_USE_TLS
+# EMAIL_HOST=EMAIL_HOST
+# EMAIL_HOST_USER=EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD=EMAIL_HOST_PASSWORD
+# EMAIL_PORT = EMAIL_PORT
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'stevensanborn@gmail.com'
+EMAIL_HOST_PASSWORD = 'Y@rdick3y2'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -44,7 +56,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'signup',
+    'box'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -117,4 +131,17 @@ if DEBUG:
         (os.path.join(PROJECT_PATH,"static","static")),
     )
 
+
+REST_FRAMEWORK = {
+    # Use hyperlinked styles by default.
+    # Only used if the `serializer_class` attribute is not set on a view.
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rest_framework.serializers.HyperlinkedModelSerializer',
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 

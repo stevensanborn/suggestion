@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block content %} 
+
+        <h1>Sign in </h1>
+        
+        <form id="login_form" method="post" action="{{ site }}/signin/" class="form-horizontal">
+
+           {% csrf_token %}
+           
+           <div class="form-group form-group-lg"  >
+                
+                <div class="error">
+                {{ form.non_field_errors }}
+                </div>
+                
+                <div class="col-sm-5">
+                    <input type="text" class="form-control input-lg" name="email" value="{{ form.email.value }}" size="50"  placeholder="Email Address"/>
+                </div>
+
+              
+              <div  class="error">
+                {{ form.email.errors }}
+              </div>
+            
+           </div>
+
+            <div class="form-group form-group-lg" >
+                <div class="col-sm-5">
+                    <input type="password" name="password"  class="form-control input-lg" value="{{ form.password.value }}" id="password" value="" size="50" placeholder="Password" />
+                   
+                </div>
+
+                <div class="error" >
+                    {{ form.password.errors }}
+                </div>
+            </div>
+                
+            <input type="submit" value="Sign in" class="btn btn-lg btn-primary" />
+            <a href="{% url "register" %}" class="btn btn-warning btn-lg">Register</a>
+        </form>
+
+{% endblock %}
