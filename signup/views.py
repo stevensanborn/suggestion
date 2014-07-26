@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage
 
 import os
 
-from postmark import PMMail
+#from postmark import PMMail
 from .forms import UserForm , LoginForm
 
 
