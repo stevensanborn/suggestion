@@ -33,3 +33,13 @@ class LoginForm(forms.ModelForm):
 	class Meta:
 	    model = User
 	    fields = ( 'email', 'password')
+
+class AccountForm(forms.ModelForm):
+	passwordold = forms.CharField(widget=forms.PasswordInput())
+	password = forms.CharField(widget=forms.PasswordInput())
+	passwordconfirm = forms.CharField(widget=forms.PasswordInput())
+	class Meta:
+	    model = User
+	    fields = ( 'passwordold','password','passwordconfirm')
+
+	

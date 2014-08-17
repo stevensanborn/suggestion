@@ -27,15 +27,20 @@ def open_box(request,url_hash):
 		form=OpenSuggestionForm()		
 	return render_to_response('open-suggestion-box.html', {'Box':B,'request':request,'form':form},context_instance=RequestContext(request))
 
+
 def open_box_thankyou(request,url_hash):
 	B=Box.objects.get(url_hash=url_hash)
 	return render_to_response('open-suggestion-box-thankyou.html', {'Box':B,'request':request},context_instance=RequestContext(request))
-
 
 def user_box(request,box_id):
 	B=Box.objects.get(id=box_id)
 	SList= Suggestion.objects.filter(box=B)
 	return render_to_response('suggestion-box.html', {'Box':B,'Suggestions':SList,'request':request},context_instance=RequestContext(request))
+
+@login_required
+def user_home(request):
+	BList=Box.objects.filter(user=request.user).annotate(Count('suggestion'))
+	return render_to_response('account.html', {'Boxes':BList},context_instance=RequestContext(request))
 
 @login_required
 def user_boxes(request):

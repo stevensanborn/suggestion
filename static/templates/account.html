@@ -1,15 +1,60 @@
 
 {% extends 'base.html' %}
 
-
-{% block breadcrumbs %}
-<ol class="breadcrumb">
-  <li><a href="{% url "home" %}">Home</a></li>
-  <li><a href="{% url "account" %}">Account</a></li>
-</ol>
-{% endblock %}
-
 {% block content %} 
+
+<h2  class="left-headline page-header">Account</h2>
+
+  
+        <form id="user_form" method="post" action="{%  url 'account' %}" class="form-horizontal">
+
+           {% csrf_token %}
+				
+			{% if update == 'success'%}
+			<div class="form-group form-group-lg" >
+				 <div class="col-sm-7">
+					<div class="alert alert-success" role="alert">Your account has been updated.</div>
+				</div>
+			</div>
+			{% endif %}
+
+            <div class="form-group form-group-lg" >
+
+                <div class="col-sm-7">
+                    <input type="password" name="passwordold"  class="form-control input-lg" value="{% if form.password.value != None %}{{ form.passwordold.value }}{% endif %}" id="passwordold"  size="50" placeholder="Old Password" />
+                </div>
+
+                <div class="error" >
+                    {{ form.passwordold.errors }}
+                </div>
+            </div>
+          
+
+            <div class="form-group form-group-lg" >
+
+                <div class="col-sm-7">
+                    <input type="password" name="password"  class="form-control input-lg" value="{% if form.password.value != None %}{{ form.password.value }}{% endif %}" id="password" size="50" placeholder="New Password" />
+                </div>
+
+                <div class="error" >
+                    {{ form.password.errors }}
+                </div>
+            </div>
+
+            <div class="form-group form-group-lg" >
+
+                <div class="col-sm-7">
+                    <input type="password" name="passwordconfirm"  class="form-control input-lg" value="{% if form.passwordconfirm.value != None %}{{ form.passwordconfirm.value }}{% endif %}" id="password"  size="50" placeholder="Confirm New Password" />
+                </div>
+
+                <div class="error" >
+                    {{ form.passwordconfirm.errors }}
+                </div>
+            </div>
+                
+            <input type="submit" value="Register" class="btn btn-lg btn-primary" />
+            
+        </form>
 
 
 {% endblock %}

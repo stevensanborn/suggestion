@@ -17,17 +17,13 @@ PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 from .email_info import * 
-# EMAIL_USE_TLS=EMAIL_USE_TLS
-# EMAIL_HOST=EMAIL_HOST
-# EMAIL_HOST_USER=EMAIL_HOST_USER
-# EMAIL_HOST_PASSWORD=EMAIL_HOST_PASSWORD
-# EMAIL_PORT = EMAIL_PORT
+EMAIL_USE_TLS=EMAIL_USE_TLS
+EMAIL_HOST=EMAIL_HOST
+EMAIL_HOST_USER=EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD=EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'stevensanborn@gmail.com'
-EMAIL_HOST_PASSWORD = 'Y@rdick3y2'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -44,8 +40,12 @@ TEMPLATE_DEBUG = True
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+
 ALLOWED_HOSTS = ['*']
 
+POSTMARK_API_KEY="c44dfb27-e4da-40bd-abe8-ef0729f1ed88"
+POSTMARK_TEST_MODE=True
 
 # Application definition
 
@@ -56,9 +56,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
     'rest_framework',
     'signup',
-    'box'
+    'box',
+    'south'
 )
 
 MIDDLEWARE_CLASSES = (

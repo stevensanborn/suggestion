@@ -80,12 +80,10 @@ div.error{
 	margin-bottom: 10px;
 }
 .right-btn{
-	display: inline-block;
-	margin: 15px 5px 0 0;
+	margin: 0px 5px 5px 0;
 }
 .left-headline{
-	display: inline-block;
-	;
+	
 }
 
 .admin-suggestion{
@@ -115,3 +113,28 @@ div.error{
 	padding-bottom: 0px;
 	margin-bottom: 0;
 }
+
+#dropdownMenu1{
+	  outline: none;
+	background-color: #8C3F86;
+	border-radius: 0;
+	border: none;
+	color: #EEEEEE;
+	padding: 15px 15px 15px 15px;
+}
+#dropdownMenu1:active{
+	border: none;
+	outline: none;
+}
+
+#signin-dropdown{
+	border: none;;
+}
+
+#dropdownMenu1 .fa-caret-down{
+	margin-left: 5px;
+	font-size: 1.3em;
+	line-height: 20px;
+	/*/margin: 5px 0 0;*/
+}
+

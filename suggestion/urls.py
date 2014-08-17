@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from signup.views import register , user_login, user_signout, get_started , user_account
-from box.views import user_boxes,user_boxes_create,user_box,open_box,open_box_thankyou
+from box.views import user_boxes,user_boxes_create,user_box,open_box,open_box_thankyou,user_home
 
 admin.autodiscover()
 

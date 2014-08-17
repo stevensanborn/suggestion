@@ -47,25 +47,25 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#">Link</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
 
 
         {% if user.is_authenticated %}
-          <div class="dropdown">
+          <div class="dropdown" id="account-dropdown">
           
 
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
               {{user.username}}
             
-            <span class="caret"></span>
-            
+            <i class="fa fa-caret-down"></i>
+
             </button>
              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suggestion </a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'account' %}">Account</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'signout' %}">Sign out</a></li>
             </ul>
           

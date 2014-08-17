@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.shortcuts import render,render_to_response, RequestContext, HttpResponseRedirect
 from django.contrib.auth import authenticate, login , logout
@@ -9,18 +10,19 @@ from django.forms.util import ErrorList
 from django.forms.forms import NON_FIELD_ERRORS
 from django.core.urlresolvers import reverse
 from django.core.mail import EmailMessage
-
+from django.contrib.auth.decorators import login_required
 import os
 
+from postmark import PMMail
+
 #from postmark import PMMail
-from .forms import UserForm , LoginForm
+from .forms import UserForm , LoginForm , AccountForm
 
 
 # Create your views here.
 
 def home(request):
 	return  render_to_response("home.html",locals(),context_instance=RequestContext(request))
-
 
 
 def thankyou(request):
@@ -79,6 +81,7 @@ def user_login(request):
 		# blank dictionary object...
 		return render_to_response('login.html', {}, context)
 
+
 def get_started(request):
 	# check if you are logged other wise go ro signup
 	if request.user.is_authenticated():
@@ -86,9 +89,29 @@ def get_started(request):
 	else:
 		return HttpResponseRedirect("signup")
 
+@login_required
 def user_account(request):
+	print("user account")
 	context = RequestContext(request)
-	return render_to_response('account.html',{},context)
+
+	# If the request is a HTTP POST, try to pull out the relevant information.
+	if request.method == 'POST':
+		print ("post")
+		passwordold = request.POST['passwordold']
+		password = request.POST['password']
+		passwordconfirm = request.POST['passwordconfirm']
+		account_form = AccountForm (request.POST)
+
+		if account_form.is_valid():
+			user=request.user;
+			user.set_password(account_form.data['password'])
+			user.save()
+			return render_to_response('account.html',{'form': account_form, 'update':'success'},context)
+		else:
+			return render_to_response('account.html',{'form': account_form},context)
+	else:
+		account_form = AccountForm()
+		return render_to_response('account.html',{'form': account_form},context)
 
 def user_signout(request):
 	logout(request)
@@ -120,10 +143,19 @@ def register(request):
 			user.save()
 			registered = True
 
-			email = EmailMessage('Hello', 'World', to=['stevensanborn@gmail.com'])
-			email.send()
+			# email = EmailMessage('Hello', 'World', to=['stevensanborn@gmail.com'])
+			# email.send()
+			message = PMMail(api_key = os.environ.get('POSTMARK_API_KEY'),
+                 subject = "lilBettr Signup - Complete",
+                 sender = "info@lilbettr.com",
+                 to = "stevensanborn@gmail.com",
+                 text_body = "Thankyou for signing up and wanting to make things a lil bettr.",
+                 tag = "Signup")
 
-			return HttpResponseRedirect('/')
+			message.send()
+
+
+			return HttpResponseRedirect(reverse('home'))
 		else:
 			
 			return render_to_response('registration.html',{'form': user_form},context)
